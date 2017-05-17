@@ -1,0 +1,139 @@
+<!--
+  ~ Copyright 2017 Ruslan_<<RUS_M>>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+
+    <!--TABS-->
+    <string-array name="Tabs">
+        <item>@string/tab_cpu</item>
+        <item>@string/tab_device</item>
+        <item>@string/tab_system</item>
+        <item>@string/tab_battery</item>
+        <item>@string/tab_sensors</item>
+        <item>@string/tab_about</item>
+    </string-array>
+
+    <string name="app_name">DeviceInfo</string>
+    <string name="tab_cpu">CPU</string>
+    <string name="tab_device">DEVICE</string>
+    <string name="tab_system">SYSTEM</string>
+    <string name="tab_battery">BATTERY</string>
+    <string name="tab_sensors">SENSORS</string>
+    <string name="tab_about">ABOUT</string>
+
+    <!--CPU-->
+    <string name="cpu_processor">Processor</string>
+    <string name="cpu_cores">CPU Cores</string>
+    <string name="cpu_architecture">Architecture</string>
+    <string name="cpu_string">CPU %d</string>
+    <string name="cpu_implementer">CPU Implementer</string>
+    <string name="cpu_archetecture">CPU Architecture</string>
+    <string name="cpu_variant">CPU Variant</string>
+    <string name="cpu_part">CPU Part</string>
+    <string name="cpu_revision">CPU Revision</string>
+    <string name="cpu_min_freq">Min MHz</string>
+    <string name="cpu_max_freq">Max MHz</string>
+    <string name="cpu_serial">Serial</string>
+    <string name="cpu_hardware">Hardware</string>
+    <string name="cpu_stopped">Stopped</string>
+    <string name="cpu_unknown">Unknown</string>
+    <string name="revision">Revision</string>
+    <string name="process_string">Process</string>
+    <string name="clock_speed_string">Clock Speed</string>
+
+    <!--Device-->
+    <string name="device_available_ram">Available RAM</string>
+    <string name="device_total_ram">Total Ram</string>
+    <string name="device_model">Model</string>
+    <string name="device_board">Board</string>
+    <string name="device_manufacturer">Manufacturer</string>
+    <string name="device_screen_size">Screen Size</string>
+    <string name="device_screen_resolution">Screen Resolution</string>
+    <string name="device_screen_density">Screen Density</string>
+    <string name="device_internal_storage">Internal Storage</string>
+    <string name="device_available_storage">Available Storage</string>
+    <string name="device_inches">inches</string>
+    <string name="device_pixels">pixels</string>
+    <string name="device_dpi">dpi</string>a
+
+    <!--System-->
+    <string name="system_uptime">System Uptime</string>
+    <string name="system_android_version">Android Version</string>
+    <string name="system_api_level">API Level</string>
+    <string name="system_bootloader">Bootloader</string>
+    <string name="system_build_id">Build ID</string>
+    <string name="system_java_vm">Java VM</string>
+    <string name="system_kernel_architecture">Kernel Architecture</string>
+    <string name="system_kernel_version">Kernel Version</string>
+    <string name="system_root_access">Root Access</string>
+    <string name="system_unknown">Unknown</string>
+    <string name="system_yes">Yes</string>
+    <string name="system_no">No</string>
+
+    <!--Battery-->
+    <string name="battery_voltage">Voltage</string>
+    <string name="battery_level">Level</string>
+    <string name="battery_temperature">Temperature</string>
+    <string name="battery_health">Health</string>
+    <string name="battery_status">Status</string>
+    <string name="battery_technology">Technology</string>
+    <string name="battery_power_source">Power Source</string>
+    <string name="battery_status_charging">Charging</string>
+    <string name="battery_status_discharging">Discharging</string>
+    <string name="battery_status_full">Full</string>
+    <string name="battery_status_not_charging">Not Charging</string>
+    <string name="battery_status_unknown">Unknown</string>
+    <string name="battery_health_good">Good</string>
+    <string name="battery_health_overheat">Overheat</string>
+    <string name="battery_health_dead">Dead</string>
+    <string name="battery_health_over_voltage">Over voltage</string>
+    <string name="battery_health_cold">Cold</string>
+    <string name="battery_health_unspecified_failure">Unspecified failure</string>
+    <string name="battery_health_unknown">Unknown</string>
+    <string name="battery_plugged_ac">AC</string>
+    <string name="battery_plugged_usb">USB</string>
+    <string name="battery_plugged_wireless">WIRELESS</string>
+    <string name="battery_plugged_default">BATTERY</string>
+    <string name="battery_unknown">Unknown</string>
+
+    <!--Sensors-->
+    <string name="sensor_accelerometr_sensor">Accelerometer</string>
+    <string name="sensor_magnetic_field_sensor">Magnetic Field</string>
+    <string name="sensor_orientation_sensor">Orientation</string>
+    <string name="sensor_temperature_sensor">Temperature</string>
+    <string name="sensor_proximity_sensor">Proximity</string>
+    <string name="sensor_light_sensor">Light</string>
+    <string name="sensor_pressure_sensor">Pressure</string>
+    <string name="sensor_humidity_sensor">Humidity</string>
+    <string name="sensor_gravity_sensor">Gravity</string>
+    <string name="sensor_linear_acceleration_sensor">Linear Accel.</string>
+    <string name="sensor_rotation_vector_sensor">Rotation Vector</string>
+    <string name="sensor_gyroscope_sensor">Gyroscope</string>
+    <string name="sensor_relative_humidity_sensor">Relative Humidity</string>
+    <string name="sensor_ambient_temperature_sensor">Ambient Temperature</string>
+    <string name="sensor_significant_motion_sensor">Significant Motion</string>
+    <string name="sensor_step_counter_sensor">Step Counter</string>
+    <string name="sensor_heart_rate_sensor">Heart Rate</string>
+    <string name="sensor_step_dector_sensor">Step Detector</string>
+    <string name="sensor_game_rotation_vector">Game Rotation Vector</string>
+    <string name="sensor_geomagnetic_rotation_vector">Geomagnetic Rotation Vector</string>
+    <string name="sensor_not_supported">Not Supported</string>
+
+    <!--About-->
+    <string name="about_version">Version:</string>
+
+    <string name="undefined">Undefined</string>
+
+</resources>

@@ -1,0 +1,139 @@
+<!--
+  ~ Copyright 2017 Ruslan_<<RUS_M>>
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+
+    <!--TABS-->
+    <string-array name="Tabs">
+        <item>@string/tab_cpu</item>
+        <item>@string/tab_device</item>
+        <item>@string/tab_system</item>
+        <item>@string/tab_battery</item>
+        <item>@string/tab_sensors</item>
+        <item>@string/tab_about</item>
+    </string-array>
+
+    <string name="app_name">Инф-ция об устройст.</string>
+    <string name="tab_cpu">ЦПУ</string>
+    <string name="tab_device">УСТРОЙСТВО</string>
+    <string name="tab_system">СИСТЕМА</string>
+    <string name="tab_battery">БАТАРЕЯ</string>
+    <string name="tab_sensors">СЕНСОРЫ</string>
+    <string name="tab_about">О СОФТЕ</string>
+
+    <!--CPU-->
+    <string name="cpu_processor">Процессор</string>
+    <string name="cpu_cores">Количество ядер</string>
+    <string name="cpu_architecture">Архитектура</string>
+    <string name="cpu_string">Ядро %d</string>
+    <string name="cpu_implementer">Разработчик ЦП</string>
+    <string name="cpu_archetecture">Архитектура процессора</string>
+    <string name="cpu_variant">Вариант ЦП</string>
+    <string name="cpu_part">Процессорная часть</string>
+    <string name="cpu_revision">Версия процессора</string>
+    <string name="cpu_min_freq">Мин МГц</string>
+    <string name="cpu_max_freq">Макс МГц</string>
+    <string name="cpu_serial">Серийный номер</string>
+    <string name="cpu_hardware">Аппаратное обеспечение</string>
+    <string name="cpu_stopped">Остановлено</string>
+    <string name="cpu_unknown">Неизвестный</string>
+    <string name="revision">Ревизия</string>
+    <string name="process_string">Процесс</string>
+    <string name="clock_speed_string">Clock Speed</string>
+
+    <!--Device-->
+    <string name="device_available_ram">Доступное ОЗУ</string>
+    <string name="device_total_ram">ОЗУ</string>
+    <string name="device_model">Модель</string>
+    <string name="device_board">Плата</string>
+    <string name="device_manufacturer">Производитель</string>
+    <string name="device_screen_size">Размер экрана</string>
+    <string name="device_screen_resolution">Разрешение экрана</string>
+    <string name="device_screen_density">Плотность экрана</string>
+    <string name="device_internal_storage">Внутренняя память</string>
+    <string name="device_available_storage">Доступная внутренняя память</string>
+    <string name="device_inches">дюймов</string>
+    <string name="device_pixels">пикселей</string>
+    <string name="device_dpi">точек на дюйм</string>a
+
+    <!--System-->
+    <string name="system_uptime">Время работы сист.</string>
+    <string name="system_android_version">Версия Андроид</string>
+    <string name="system_api_level">Версия АПИ</string>
+    <string name="system_bootloader">Загрузчик</string>
+    <string name="system_build_id">ИД сборки</string>
+    <string name="system_java_vm">Виртуальная машина</string>
+    <string name="system_kernel_architecture">Архитектура ядра</string>
+    <string name="system_kernel_version">Версия ядра</string>
+    <string name="system_root_access">Рутовый доступ</string>
+    <string name="system_unknown">Неизвестно</string>
+    <string name="system_yes">Да</string>
+    <string name="system_no">Нет</string>
+
+    <!--Battery-->
+    <string name="battery_voltage">Напряжение</string>
+    <string name="battery_level">Уровень</string>
+    <string name="battery_temperature">Температура</string>
+    <string name="battery_health">Здоровье</string>
+    <string name="battery_status">Статус</string>
+    <string name="battery_technology">Технология</string>
+    <string name="battery_power_source">Источник питания</string>
+    <string name="battery_status_charging">Заряжается</string>
+    <string name="battery_status_discharging">Разряжается</string>
+    <string name="battery_status_full">Полная</string>
+    <string name="battery_status_not_charging">Не заряжается</string>
+    <string name="battery_status_unknown">Неизвестный</string>
+    <string name="battery_health_good">Хорошо</string>
+    <string name="battery_health_overheat">Перегрев</string>
+    <string name="battery_health_dead">Мертв</string>
+    <string name="battery_health_over_voltage">Перенапряжение</string>
+    <string name="battery_health_cold">Холодно</string>
+    <string name="battery_health_unspecified_failure">Неопределенный сбой</string>
+    <string name="battery_health_unknown">Неизвестный</string>
+    <string name="battery_plugged_ac">AC</string>
+    <string name="battery_plugged_usb">USB</string>
+    <string name="battery_plugged_wireless">Беспроводной</string>
+    <string name="battery_plugged_default">Батарея</string>
+    <string name="battery_unknown">Неизвестный</string>
+
+    <!--Sensors-->
+    <string name="sensor_accelerometr_sensor">Акселерометр</string>
+    <string name="sensor_magnetic_field_sensor">Сен-р магнитного поля</string>
+    <string name="sensor_orientation_sensor">Сен-р ориентации</string>
+    <string name="sensor_temperature_sensor">Сен-р температуры</string>
+    <string name="sensor_proximity_sensor">Сен-р близости</string>
+    <string name="sensor_light_sensor">Сен-р света</string>
+    <string name="sensor_pressure_sensor">Сен-р давления</string>
+    <string name="sensor_humidity_sensor">Сен-р влажности</string>
+    <string name="sensor_gravity_sensor">Сен-р гравитации</string>
+    <string name="sensor_linear_acceleration_sensor">Линейный акселерометр</string>
+    <string name="sensor_rotation_vector_sensor">Сен-р векторного поворота</string>
+    <string name="sensor_gyroscope_sensor">Гироскоп</string>
+    <string name="sensor_relative_humidity_sensor">Сен-р относительной влажности</string>
+    <string name="sensor_ambient_temperature_sensor">Сен-р температуры окружающей среды</string>
+    <string name="sensor_significant_motion_sensor">Сен-р значительного движения</string>
+    <string name="sensor_step_counter_sensor">Счетчик шагов</string>
+    <string name="sensor_heart_rate_sensor">Сен-р частоты сердцебиения</string>
+    <string name="sensor_step_dector_sensor">Детектор шага</string>
+    <string name="sensor_game_rotation_vector">Сен-р игрового вектора вращения</string>
+    <string name="sensor_geomagnetic_rotation_vector">Сен-р геомагнитного вектора вращения</string>
+    <string name="sensor_not_supported">Отсутствует</string>
+
+    <!--About-->
+    <string name="about_version">Версия:</string>
+
+    <string name="undefined">Неопределенно</string>
+
+</resources>
