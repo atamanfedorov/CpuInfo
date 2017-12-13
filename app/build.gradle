@@ -11,13 +11,14 @@ def versionPatch = 0
 def versionBuild = 0
 
 android {
+
     compileSdkVersion 23
     buildToolsVersion "24.0.0"
 
     defaultConfig {
+
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         applicationId "rus.cpuinfo"
         buildConfigField "String", "AUTHOR", "\"RUS_M\""
@@ -26,15 +27,19 @@ android {
     }
 
     signingConfigs {
-        release {
+
+        MyConfig {
+
         }
     }
 
     buildTypes {
+
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.MyConfig
         }
 
         debug {
@@ -42,12 +47,6 @@ android {
             versionNameSuffix "-dbg"
         }
     }
-
-    /*
-    applicationVariants.all { variant ->
-        variant.resValue "string", "about_version_name", variant.versionName
-    }
-    */
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -65,4 +64,5 @@ android {
         compile 'com.google.guava:guava:20.0'
         compile 'org.apache.commons:commons-lang3:3.5'
     }
+
 }
