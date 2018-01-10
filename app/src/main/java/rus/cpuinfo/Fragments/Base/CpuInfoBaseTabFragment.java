@@ -129,6 +129,7 @@ public abstract class CpuInfoBaseTabFragment extends Fragment implements MainCon
             });}
     }
 
+
     @NonNull
     protected TabPagerAdapter createAdapter() {
         return new TabPagerAdapter(getChildFragmentManager());

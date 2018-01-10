@@ -22,25 +22,25 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
-import rus.cpuinfo.DeviceInfo.DeviceInfo;
+import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
 import rus.cpuinfo.Qualifers.ForCpu;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.Interfaces.ILogger;
 import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 
-import static rus.cpuinfo.Model.HardwareInfo.CPU_CORES;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_FREQ;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_IMPLEM;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_MAX_FREQ;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_MIN_FREQ;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_PART;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_PROCESSOR;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_REVISION;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_VARIANT;
-import static rus.cpuinfo.Model.HardwareInfo.HARDWARE;
-import static rus.cpuinfo.Model.HardwareInfo.REVISION;
-import static rus.cpuinfo.Model.HardwareInfo.SERIAL;
+import static rus.cpuinfo.Model.BaseInfo.CPU_CORES;
+import static rus.cpuinfo.Model.BaseInfo.CPU_FREQ;
+import static rus.cpuinfo.Model.BaseInfo.CPU_IMPLEM;
+import static rus.cpuinfo.Model.BaseInfo.CPU_MAX_FREQ;
+import static rus.cpuinfo.Model.BaseInfo.CPU_MIN_FREQ;
+import static rus.cpuinfo.Model.BaseInfo.CPU_PART;
+import static rus.cpuinfo.Model.BaseInfo.CPU_PROCESSOR;
+import static rus.cpuinfo.Model.BaseInfo.CPU_REVISION;
+import static rus.cpuinfo.Model.BaseInfo.CPU_VARIANT;
+import static rus.cpuinfo.Model.BaseInfo.HARDWARE;
+import static rus.cpuinfo.Model.BaseInfo.REVISION;
+import static rus.cpuinfo.Model.BaseInfo.SERIAL;
 
 @Singleton
 public class CpuController extends InfoController {
@@ -48,8 +48,8 @@ public class CpuController extends InfoController {
     private rus.cpuinfo.Model.CpuInfo mCpuInfo = new rus.cpuinfo.Model.CpuInfo();
     private final static String mTag = CpuController.class.getSimpleName();
     @Inject
-    public CpuController(@ForCpu HardwareInfoAdapter hardwareInfoAdapter, @ForCpu DeviceInfo deviceInfo, @NonNull IStringFetcher stringFetcher,@NonNull ILogger logger) {
-        super(hardwareInfoAdapter, deviceInfo, stringFetcher,logger);
+    public CpuController(@ForCpu HardwareInfoAdapter hardwareInfoAdapter, @ForCpu BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger) {
+        super(hardwareInfoAdapter, baseInfo, stringFetcher,logger);
     }
 
     @Override

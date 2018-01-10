@@ -19,9 +19,8 @@ package rus.cpuinfo.Model;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-// FIXME: 14.03.2017
 
-public class DeviceInfo extends HardwareInfo {
+public class DeviceInfo extends BaseInfo {
 
     public void setScreenSize(@NonNull String screenSize) {
         if (isMatched(screenSize))

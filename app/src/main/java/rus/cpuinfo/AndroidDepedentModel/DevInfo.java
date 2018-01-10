@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package rus.cpuinfo.DeviceInfo;
+package rus.cpuinfo.AndroidDepedentModel;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -34,18 +34,18 @@ import java.util.Locale;
 import rus.cpuinfo.Util.VersionUtil;
 
 import static android.text.format.Formatter.formatFileSize;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_AVAILABLE_STORAGE;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_AVIALABLE_RAM;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_BOARD;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_INTERNAL_STORAGE;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_MANUFACTURER;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_MODEL;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_SCREEN_DENSITY;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_SCREEN_RESOLUTION;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_SCREEN_SIZE;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_TOTAL_RAM;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_AVAILABLE_STORAGE;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_AVIALABLE_RAM;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_BOARD;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_INTERNAL_STORAGE;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_MANUFACTURER;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_MODEL;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_SCREEN_DENSITY;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_SCREEN_RESOLUTION;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_SCREEN_SIZE;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_TOTAL_RAM;
 
-public class DevInfo extends DeviceInfo {
+public class DevInfo extends BaseInfo {
 
     public DevInfo(Context context) {
         super(context);

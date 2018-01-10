@@ -22,12 +22,12 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import rus.cpuinfo.DeviceInfo.BatteryInfo;
-import rus.cpuinfo.DeviceInfo.CpuInfo;
-import rus.cpuinfo.DeviceInfo.DevInfo;
-import rus.cpuinfo.DeviceInfo.DeviceInfo;
-import rus.cpuinfo.DeviceInfo.SensorsInfo;
-import rus.cpuinfo.DeviceInfo.SysInfo;
+import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
+import rus.cpuinfo.AndroidDepedentModel.BatteryInfo;
+import rus.cpuinfo.AndroidDepedentModel.CpuInfo;
+import rus.cpuinfo.AndroidDepedentModel.DevInfo;
+import rus.cpuinfo.AndroidDepedentModel.SensorsInfo;
+import rus.cpuinfo.AndroidDepedentModel.SysInfo;
 import rus.cpuinfo.Qualifers.ForBattery;
 import rus.cpuinfo.Qualifers.ForCpu;
 import rus.cpuinfo.Qualifers.ForDevice;
@@ -47,7 +47,7 @@ public class DeviceInfoProvider {
     @Provides
     @Singleton
     @ForCpu
-    DeviceInfo providesCpuInfo(Context context)
+    BaseInfo providesCpuInfo(Context context)
     {
         return new CpuInfo(context);
     }
@@ -56,7 +56,7 @@ public class DeviceInfoProvider {
     @Provides
     @Singleton
     @ForDevice
-    DeviceInfo providesDevInfo(Context context)
+    BaseInfo providesDevInfo(Context context)
     {
         return new DevInfo(context);
     }
@@ -64,7 +64,7 @@ public class DeviceInfoProvider {
     @Provides
     @Singleton
     @ForSystem
-    DeviceInfo providesSysInfo(Context context)
+    BaseInfo providesSysInfo(Context context)
     {
         return new SysInfo(context);
     }
@@ -72,7 +72,7 @@ public class DeviceInfoProvider {
     @Provides
     @Singleton
     @ForBattery
-    DeviceInfo providesBatteryInfo(Context context)
+    BaseInfo providesBatteryInfo(Context context)
     {
         return new BatteryInfo(context);
     }
@@ -80,7 +80,7 @@ public class DeviceInfoProvider {
     @Provides
     @Singleton
     @ForSensors
-    DeviceInfo providesSensorsInfo(Context context)
+    BaseInfo providesSensorsInfo(Context context)
     {
         return new SensorsInfo(context);
     }

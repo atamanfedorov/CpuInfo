@@ -19,9 +19,7 @@ package rus.cpuinfo.Model;
 import android.support.annotation.NonNull;
 
 
-// FIXME: 14.03.2017
-
-public class SensorInfo extends HardwareInfo {
+public class SensorInfo extends BaseInfo {
 
     public void setAccelerometr(@NonNull String accelerometr) {
         putInfo(SENSOR_ACCELEROMETR,accelerometr);

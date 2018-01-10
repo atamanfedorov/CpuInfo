@@ -15,7 +15,7 @@
  */
 
 
-package rus.cpuinfo.DeviceInfo;
+package rus.cpuinfo.AndroidDepedentModel;
 
 import android.content.Context;
 import android.support.annotation.IntRange;
@@ -32,20 +32,20 @@ import java.util.Locale;
 import rus.cpuinfo.Util.ConverterUtil;
 import rus.cpuinfo.Util.OsCommand;
 
-import static rus.cpuinfo.Model.HardwareInfo.CPU_CORES;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_FREQ;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_IMPLEM;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_MAX_FREQ;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_MIN_FREQ;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_PART;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_PROCESSOR;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_REVISION;
-import static rus.cpuinfo.Model.HardwareInfo.CPU_VARIANT;
-import static rus.cpuinfo.Model.HardwareInfo.HARDWARE;
-import static rus.cpuinfo.Model.HardwareInfo.REVISION;
-import static rus.cpuinfo.Model.HardwareInfo.SERIAL;
+import static rus.cpuinfo.Model.BaseInfo.CPU_CORES;
+import static rus.cpuinfo.Model.BaseInfo.CPU_FREQ;
+import static rus.cpuinfo.Model.BaseInfo.CPU_IMPLEM;
+import static rus.cpuinfo.Model.BaseInfo.CPU_MAX_FREQ;
+import static rus.cpuinfo.Model.BaseInfo.CPU_MIN_FREQ;
+import static rus.cpuinfo.Model.BaseInfo.CPU_PART;
+import static rus.cpuinfo.Model.BaseInfo.CPU_PROCESSOR;
+import static rus.cpuinfo.Model.BaseInfo.CPU_REVISION;
+import static rus.cpuinfo.Model.BaseInfo.CPU_VARIANT;
+import static rus.cpuinfo.Model.BaseInfo.HARDWARE;
+import static rus.cpuinfo.Model.BaseInfo.REVISION;
+import static rus.cpuinfo.Model.BaseInfo.SERIAL;
 
-public class CpuInfo extends DeviceInfo {
+public class CpuInfo extends BaseInfo {
 
     private static final String GREP_COMMAND = "grep";
     private static final String CPU_INFO_PATH = "/proc/cpuinfo";
@@ -75,7 +75,6 @@ public class CpuInfo extends DeviceInfo {
     private static final String SPLIT_PATTERN = ":";
 
     private static final String STOPPED = "stopped";
-    private static final long CORES = Runtime.getRuntime().availableProcessors();
 
     public CpuInfo(Context context) {
         super(context);
@@ -164,7 +163,7 @@ public class CpuInfo extends DeviceInfo {
 
     private String getAviableProcessors()
     {
-        return CORES + StringUtils.EMPTY;
+        return Runtime.getRuntime().availableProcessors() + StringUtils.EMPTY;
     }
 
     @NonNull
@@ -184,7 +183,7 @@ public class CpuInfo extends DeviceInfo {
     {
 
         StringBuilder values = new StringBuilder();
-        for (int coreIndex = 0; coreIndex < CORES; coreIndex++) {
+        for (int coreIndex = 0; coreIndex < Runtime.getRuntime().availableProcessors(); coreIndex++) {
 
             String curFreq = requestToCpuFreq(coreIndex, A_SCALING_CUR_FREQ);
             values.append(curFreq.isEmpty()

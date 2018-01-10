@@ -14,23 +14,9 @@
  * limitations under the License.
  */
 
+package rus.cpuinfo.Model;
 
-package rus.cpuinfo.DeviceInfo;
+public interface IBaseInfo<T> {
 
-import android.content.Context;
-
-public abstract class DeviceInfo {
-
-    private Context mContext;
-
-    public DeviceInfo(Context context)
-    {
-        mContext = context;
-    }
-
-    public abstract String getInfo(int query);
-
-    public Context getContext() {
-        return mContext;
-}
+   T getInfoByQuery(Integer query);
 }

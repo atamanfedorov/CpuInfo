@@ -18,6 +18,8 @@ public class ExampleUnitTest {
     @Test
     public void start_tests() throws Exception {
 
+        rus.cpuinfo.Model.CpuInfo cpuInfo = new rus.cpuinfo.Model.CpuInfo();
+
     }
 
 

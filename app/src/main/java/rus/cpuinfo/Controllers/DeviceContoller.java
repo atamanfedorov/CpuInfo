@@ -24,23 +24,23 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
-import rus.cpuinfo.DeviceInfo.DeviceInfo;
+import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
 import rus.cpuinfo.Qualifers.ForDevice;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.Interfaces.ILogger;
 import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_AVAILABLE_STORAGE;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_AVIALABLE_RAM;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_BOARD;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_INTERNAL_STORAGE;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_MANUFACTURER;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_MODEL;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_SCREEN_DENSITY;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_SCREEN_RESOLUTION;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_SCREEN_SIZE;
-import static rus.cpuinfo.Model.HardwareInfo.DEVICE_TOTAL_RAM;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_AVAILABLE_STORAGE;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_AVIALABLE_RAM;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_BOARD;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_INTERNAL_STORAGE;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_MANUFACTURER;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_MODEL;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_SCREEN_DENSITY;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_SCREEN_RESOLUTION;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_SCREEN_SIZE;
+import static rus.cpuinfo.Model.BaseInfo.DEVICE_TOTAL_RAM;
 
 @Singleton
 public class DeviceContoller extends InfoController{
@@ -49,9 +49,9 @@ public class DeviceContoller extends InfoController{
     private rus.cpuinfo.Model.DeviceInfo mDeviceInfo = new rus.cpuinfo.Model.DeviceInfo();
 
     @Inject
-    public DeviceContoller(@ForDevice HardwareInfoAdapter hardwareInfoAdapter, @ForDevice DeviceInfo deviceInfo, @NonNull IStringFetcher stringFetcher,@NonNull ILogger logger)
+    public DeviceContoller(@ForDevice HardwareInfoAdapter hardwareInfoAdapter, @ForDevice BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger)
     {
-        super(hardwareInfoAdapter,deviceInfo,stringFetcher,logger);
+        super(hardwareInfoAdapter, baseInfo,stringFetcher,logger);
     }
 
     @Override

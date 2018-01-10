@@ -15,7 +15,7 @@
  */
 
 
-package rus.cpuinfo.DeviceInfo;
+package rus.cpuinfo.AndroidDepedentModel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,15 +26,15 @@ import android.support.annotation.Nullable;
 
 import org.apache.commons.lang3.StringUtils;
 
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_HEALTH;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_LEVEL;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_STATUS;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_TEMPERATURE;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_VOLTAGE;
-import static rus.cpuinfo.Model.HardwareInfo.BATTERY_POWER_SOURCE;
-import static rus.cpuinfo.Model.HardwareInfo.BATTERY_TECHNOLOGY;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_HEALTH;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_LEVEL;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_STATUS;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_TEMPERATURE;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_VOLTAGE;
+import static rus.cpuinfo.Model.BaseInfo.BATTERY_POWER_SOURCE;
+import static rus.cpuinfo.Model.BaseInfo.BATTERY_TECHNOLOGY;
 
-public class BatteryInfo extends DeviceInfo {
+public class BatteryInfo extends BaseInfo {
 
     public BatteryInfo(Context context)
     {

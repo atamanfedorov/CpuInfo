@@ -22,7 +22,7 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
-import rus.cpuinfo.DeviceInfo.DeviceInfo;
+import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
 import rus.cpuinfo.Model.SystemInfo;
 import rus.cpuinfo.Qualifers.ForSystem;
 import rus.cpuinfo.R;
@@ -30,15 +30,15 @@ import rus.cpuinfo.Util.Interfaces.ILogger;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 import rus.cpuinfo.Util.Repeater;
 
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_ANDROID_VERSION;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_API_LEVEL;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_BOOTLOADER;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_BUILD_ID;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_JAVA_VM;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_KERNEL_ARCHITECTURE;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_KERNEL_VERSION;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_ROOT_ACCESS;
-import static rus.cpuinfo.Model.HardwareInfo.SYSTEM_UPTIME;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_ANDROID_VERSION;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_API_LEVEL;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_BOOTLOADER;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_BUILD_ID;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_JAVA_VM;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_KERNEL_ARCHITECTURE;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_KERNEL_VERSION;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_ROOT_ACCESS;
+import static rus.cpuinfo.Model.BaseInfo.SYSTEM_UPTIME;
 
 public class SystemController extends InfoController {
 
@@ -46,8 +46,8 @@ public class SystemController extends InfoController {
   private final static String mTag = SystemController.class.getSimpleName();
 
     @Inject
-    public SystemController(@ForSystem HardwareInfoAdapter hardwareInfoAdapter, @ForSystem DeviceInfo deviceInfo, @NonNull IStringFetcher stringFetcher,@NonNull ILogger logger) {
-        super(hardwareInfoAdapter, deviceInfo, stringFetcher,logger);
+    public SystemController(@ForSystem HardwareInfoAdapter hardwareInfoAdapter, @ForSystem BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger) {
+        super(hardwareInfoAdapter, baseInfo, stringFetcher,logger);
     }
 
     @Override

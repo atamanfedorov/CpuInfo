@@ -36,7 +36,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-import rus.cpuinfo.Model.IHardwareInfo;
+import rus.cpuinfo.Model.IBaseInfo;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.StringHelper;
 
@@ -60,20 +60,20 @@ public class HardwareInfoAdapter extends RecyclerView.Adapter<HardwareInfoAdapte
 
     }
 
-    private List<Integer> mQueryConstant;
-    private IHardwareInfo<String> mHardwareInfo;
+    private List<Integer> mQuery;
+    private IBaseInfo<String> mHardwareInfo;
 
 
-    public HardwareInfoAdapter(@NonNull IHardwareInfo<String> information, @NonNull List<Integer> queryConstant) {
+    public HardwareInfoAdapter(@NonNull IBaseInfo<String> information, @NonNull List<Integer> queryConstant) {
         this(queryConstant);
         setInformation(information);
     }
 
-    public HardwareInfoAdapter(@NonNull List<Integer> queryConstant) {
-        mQueryConstant = Preconditions.checkNotNull(queryConstant,"queryConstant is null");
+    public HardwareInfoAdapter(@NonNull List<Integer> query) {
+        mQuery = Preconditions.checkNotNull(query,"queryConstant is null");
     }
 
-    public void setInformation(@NonNull IHardwareInfo<String> information) {
+    public void setInformation(@NonNull IBaseInfo<String> information) {
         mHardwareInfo = Preconditions.checkNotNull(information,"information is null");
     }
 
@@ -89,8 +89,8 @@ public class HardwareInfoAdapter extends RecyclerView.Adapter<HardwareInfoAdapte
     @Override
     public void onBindViewHolder(ViewHolder1 holder, int position) {
 
-        Integer queryConstant = mQueryConstant.get(position);
-        Integer index = position - mQueryConstant.indexOf(queryConstant);
+        Integer queryConstant = mQuery.get(position);
+        Integer index = position - mQuery.indexOf(queryConstant);
 
         Context context = holder.getContext();
 
@@ -103,7 +103,7 @@ public class HardwareInfoAdapter extends RecyclerView.Adapter<HardwareInfoAdapte
 
     @Override
     public int getItemCount() {
-        return mQueryConstant.size();
+        return mQuery.size();
     }
 
     @NonNull

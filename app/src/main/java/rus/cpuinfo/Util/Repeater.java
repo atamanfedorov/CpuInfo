@@ -21,7 +21,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-/** Created by Ruslan_<<RUS_M>>.It is needed for updating values of the screens.*/
+/** Created by Ruslan_<<RUS_M>>.It simple class is needed for updating values of the screens.*/
 public class Repeater implements Runnable
 {
     private volatile boolean hasBeenStarted = false;

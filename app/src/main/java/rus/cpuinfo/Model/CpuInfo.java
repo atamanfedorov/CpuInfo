@@ -19,9 +19,8 @@ package rus.cpuinfo.Model;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-// FIXME: 14.03.2017
 
-public class CpuInfo extends HardwareInfo {
+public class CpuInfo extends BaseInfo {
 
     public void setCores(@NonNull String cores) {
 

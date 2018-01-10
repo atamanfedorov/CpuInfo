@@ -14,9 +14,23 @@
  * limitations under the License.
  */
 
-package rus.cpuinfo.Model;
 
-public interface IHardwareInfo <T> {
+package rus.cpuinfo.AndroidDepedentModel;
 
-   T getInfoByQuery(Integer query);
+import android.content.Context;
+
+public abstract class BaseInfo {
+
+    private Context mContext;
+
+    public BaseInfo(Context context)
+    {
+        mContext = context;
+    }
+
+    public abstract String getInfo(int query);
+
+    public Context getContext() {
+        return mContext;
+}
 }

@@ -24,7 +24,7 @@ import android.support.annotation.StringRes;
 import com.google.common.base.Preconditions;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
-import rus.cpuinfo.DeviceInfo.DeviceInfo;
+import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
 import rus.cpuinfo.Util.Interfaces.ILogger;
 import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
@@ -38,16 +38,16 @@ public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
 
     private HardwareInfoAdapter mHardwareInfoAdapter;
     private IStringFetcher mStringFetcher;
-    private DeviceInfo mDeviceInfo;
+    private BaseInfo mBaseInfo;
     private ILogger mLogger;
 
     private Repeater mRepeater = new Repeater();
 
     private final static String mTag = InfoController.class.getSimpleName();
 
-    public InfoController(@NonNull HardwareInfoAdapter hardwareInfoAdapter,@NonNull DeviceInfo deviceInfo,@NonNull IStringFetcher stringFetcher,@NonNull ILogger logger)
+    public InfoController(@NonNull HardwareInfoAdapter hardwareInfoAdapter, @NonNull BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger)
     {
-        mDeviceInfo = Preconditions.checkNotNull(deviceInfo,"deviceInfo must not be null");
+        mBaseInfo = Preconditions.checkNotNull(baseInfo,"baseInfo must not be null");
         mStringFetcher = Preconditions.checkNotNull(stringFetcher,"stringFetcher must not be null");
         mHardwareInfoAdapter = Preconditions.checkNotNull(hardwareInfoAdapter,"hardwareInfoAdapter must not be null");
         mLogger = Preconditions.checkNotNull(logger,"logger must not be null");
@@ -79,7 +79,7 @@ public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
 
     String getInfo(int q)
     {
-        return mDeviceInfo.getInfo(q);
+        return mBaseInfo.getInfo(q);
     }
 
     Repeater getRepeater()
@@ -92,13 +92,13 @@ public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
         return mLogger;
     }
 
-    void updateInformation(@NonNull rus.cpuinfo.Model.HardwareInfo hardwareInfo)
+    void updateInformation(@NonNull rus.cpuinfo.Model.BaseInfo baseInfo)
     {
-        mLogger.d(mTag,"cl-InfoController. m - updateInformation. p1 - hardwareInfo = " + hardwareInfo);
+        mLogger.d(mTag,"cl-InfoController. m - updateInformation. p1 - baseInfo = " + baseInfo);
 
         HardwareInfoAdapter hardwareInfoAdapter = getAdapter();
 
-        hardwareInfoAdapter.setInformation(hardwareInfo);
+        hardwareInfoAdapter.setInformation(baseInfo);
         hardwareInfoAdapter.notifyDataSetChanged();
     }
 

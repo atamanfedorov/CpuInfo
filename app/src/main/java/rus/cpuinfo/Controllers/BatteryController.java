@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
-import rus.cpuinfo.DeviceInfo.DeviceInfo;
+import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
 import rus.cpuinfo.Model.BatteryInfo;
 import rus.cpuinfo.Qualifers.ForBattery;
 import rus.cpuinfo.R;
@@ -29,13 +29,13 @@ import rus.cpuinfo.Util.Interfaces.ILogger;
 import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_HEALTH;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_LEVEL;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_STATUS;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_TEMPERATURE;
-import static rus.cpuinfo.Model.HardwareInfo.BATERY_VOLTAGE;
-import static rus.cpuinfo.Model.HardwareInfo.BATTERY_POWER_SOURCE;
-import static rus.cpuinfo.Model.HardwareInfo.BATTERY_TECHNOLOGY;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_HEALTH;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_LEVEL;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_STATUS;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_TEMPERATURE;
+import static rus.cpuinfo.Model.BaseInfo.BATERY_VOLTAGE;
+import static rus.cpuinfo.Model.BaseInfo.BATTERY_POWER_SOURCE;
+import static rus.cpuinfo.Model.BaseInfo.BATTERY_TECHNOLOGY;
 
 public class BatteryController extends InfoController {
 
@@ -64,8 +64,8 @@ public class BatteryController extends InfoController {
     private final static String mTag = CpuController.class.getSimpleName();
 
     @Inject
-    public BatteryController(@ForBattery HardwareInfoAdapter hardwareInfoAdapter, @ForBattery DeviceInfo deviceInfo, @NonNull IStringFetcher stringFetcher,@NonNull ILogger logger) {
-        super(hardwareInfoAdapter, deviceInfo, stringFetcher,logger);
+    public BatteryController(@ForBattery HardwareInfoAdapter hardwareInfoAdapter, @ForBattery BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger) {
+        super(hardwareInfoAdapter, baseInfo, stringFetcher,logger);
     }
 
 

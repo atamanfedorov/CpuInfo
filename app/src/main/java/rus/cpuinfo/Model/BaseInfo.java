@@ -21,7 +21,7 @@ import android.util.SparseArray;
 
 // FIXME: 14.03.2017
 
-public class HardwareInfo implements IHardwareInfo<String> {
+public class BaseInfo implements IBaseInfo<String> {
 
     final static String DIGITAL_PATTERN = "0[xX][0-9a-fA-F]+|(?:\\d+\\.?)+";
 

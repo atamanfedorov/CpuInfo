@@ -20,16 +20,10 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 
-// FIXME: 14.03.2017
-
-public class SystemInfo extends HardwareInfo {
-
-    // private static final String GROUP_0 = "?([0-5]?\\d)";
-    // private static final String UPTIME_PATTERN = String.format(Locale.getDefault(),"^(?:(?:([01]?\\d|2[0-3]):)%s:)%s(?:\\sPM|\\sAM)?",GROUP_0,GROUP_0);
+public class SystemInfo extends BaseInfo {
 
     private static final String UPTIME_PATTERN = "^\\d+:[0-5]?\\d:[0-5]?\\d$";
     private static final String VERSION_PATTERN = "^(?:\\d+\\.?\\+?){1,5}(?<!\\.)$";
-
 
     public void setUpTime(@NonNull String upTime) {
        if (!TextUtils.isEmpty(upTime) && upTime.matches(UPTIME_PATTERN))
@@ -40,7 +34,6 @@ public class SystemInfo extends HardwareInfo {
         if (!TextUtils.isEmpty(androidVersion) && androidVersion.matches(VERSION_PATTERN))
             putInfo(SYSTEM_ANDROID_VERSION,androidVersion);
     }
-
 
     public void setApiLevel(@NonNull String apiLevel) {
         if (!TextUtils.isEmpty(apiLevel) && apiLevel.matches(DIGITAL_PATTERN))
@@ -71,5 +64,4 @@ public class SystemInfo extends HardwareInfo {
     public void setKernelArchitecture(@NonNull String kernelArchitecture) {
         putInfo(SYSTEM_KERNEL_ARCHITECTURE,kernelArchitecture);
     }
-
 }

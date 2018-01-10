@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package rus.cpuinfo.DeviceInfo;
+package rus.cpuinfo.AndroidDepedentModel;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,28 +24,28 @@ import android.support.annotation.NonNull;
 
 import org.apache.commons.lang3.StringUtils;
 
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_ACCELEROMETR;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_AMBIENT_TEMPERATURE;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_GAME_ROTATION_VECTOR;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_GEOMAGNETIC_ROTATION_VECTOR;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_HEART_RATE;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_HUMIDITY;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_LIGHT;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_LINEAR_ACCELERATION;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_MAGNETIC_FIELD;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_ORIENTATION;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_PRESSURE;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_PROXIMITY;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_RELATIVE_HUMIDITY;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_ROTATION_VECTOR;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_SIGNIFICANT_MOTION;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_STEP_COUNTER;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_STEP_DETECTOR;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_TEMPERATURE;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_TYPE_GRAVITY;
-import static rus.cpuinfo.Model.HardwareInfo.SENSOR_TYPE_GYROSCOPE;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_ACCELEROMETR;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_AMBIENT_TEMPERATURE;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_GAME_ROTATION_VECTOR;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_GEOMAGNETIC_ROTATION_VECTOR;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_HEART_RATE;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_HUMIDITY;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_LIGHT;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_LINEAR_ACCELERATION;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_MAGNETIC_FIELD;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_ORIENTATION;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_PRESSURE;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_PROXIMITY;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_RELATIVE_HUMIDITY;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_ROTATION_VECTOR;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_SIGNIFICANT_MOTION;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_STEP_COUNTER;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_STEP_DETECTOR;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_TEMPERATURE;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_TYPE_GRAVITY;
+import static rus.cpuinfo.Model.BaseInfo.SENSOR_TYPE_GYROSCOPE;
 
-public class SensorsInfo extends DeviceInfo {
+public class SensorsInfo extends BaseInfo {
 
     private SensorManager mSensorManager;
 

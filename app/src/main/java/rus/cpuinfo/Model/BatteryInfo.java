@@ -18,9 +18,8 @@ package rus.cpuinfo.Model;
 
 import android.support.annotation.NonNull;
 
-// FIXME: 14.03.2017
 
-public class BatteryInfo extends HardwareInfo{
+public class BatteryInfo extends BaseInfo {
 
     public void setLevel(@NonNull String level) {
         if (isDigital(level))
