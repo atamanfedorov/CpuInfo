@@ -17,7 +17,7 @@
         android:name=".CpuInfoApp"
         >
         <activity
-            android:name=".MainActivity"
+            android:name=".Ui.Activity.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             >

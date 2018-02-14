@@ -20,5 +20,4 @@ import android.support.v7.widget.Toolbar;
 
 public interface Display {
     void setSupportActionBar(Toolbar toolbar);
-    void finishActivity();
 }

@@ -19,9 +19,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/include_toolbar">
-    </include>
-
     <include layout="@layout/include_tab_layout"
         android:visibility="gone">
     </include>

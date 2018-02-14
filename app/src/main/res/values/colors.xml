@@ -15,13 +15,9 @@
   ~ limitations under the License.
   -->
 <resources>
-    <color name="colorPrimary">@android:color/black</color>
-    <color name="colorPrimaryDark">@color/black_transporent</color>
-    <color name="colorAccent">@android:color/holo_red_dark</color>
-    <color name="black_transporent">#5b1e1e1e</color>
-    <color name="gradient_center">#b3c4bfbf</color>
-    <color name="gradient_end">#deffffff</color>
-    <color name="selected">#89a7a6a6</color>
-    <color name="enabled">@color/colorPrimaryDark</color>
-    <color name="disabled">@color/colorPrimary</color>
+    <color name="colorPrimary">@color/color2</color>
+    <color name="color1">@android:color/black</color>
+    <color name="color3">@android:color/white</color>
+    <color name="color2">#323030</color>
+    <color name="color4">#247cf5</color>
 </resources>

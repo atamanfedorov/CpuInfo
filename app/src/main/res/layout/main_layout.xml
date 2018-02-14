@@ -21,9 +21,10 @@
     android:orientation="vertical"
     >
     <fragment
-        android:name="rus.cpuinfo.Fragments.CpuInfoTabTabFragment"
+        android:name="rus.cpuinfo.Ui.Fragments.CpuInfoTabTabFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/CpuInfoTabTabFragment"
         />
+
 </LinearLayout>

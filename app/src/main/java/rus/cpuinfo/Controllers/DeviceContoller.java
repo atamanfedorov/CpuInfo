@@ -25,10 +25,9 @@ import javax.inject.Singleton;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
 import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
-import rus.cpuinfo.Qualifers.ForDevice;
+import rus.cpuinfo.Injections.Qualifers.ForDevice;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.Interfaces.ILogger;
-import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 
 import static rus.cpuinfo.Model.BaseInfo.DEVICE_AVAILABLE_STORAGE;
@@ -46,7 +45,6 @@ import static rus.cpuinfo.Model.BaseInfo.DEVICE_TOTAL_RAM;
 public class DeviceContoller extends InfoController{
 
     private final String mTag = DeviceContoller.class.getSimpleName();
-    private rus.cpuinfo.Model.DeviceInfo mDeviceInfo = new rus.cpuinfo.Model.DeviceInfo();
 
     @Inject
     public DeviceContoller(@ForDevice HardwareInfoAdapter hardwareInfoAdapter, @ForDevice BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger)
@@ -56,44 +54,54 @@ public class DeviceContoller extends InfoController{
 
     @Override
     protected void onInited() {
+        super.onInited();
 
         getLogger().d(mTag,"DeviceContoller. OnInited");
+        rus.cpuinfo.Model.DeviceInfo deviceInfo = new rus.cpuinfo.Model.DeviceInfo();
 
-        mDeviceInfo.setModel(getInfo(DEVICE_MODEL));
-        mDeviceInfo.setBoard(getInfo(DEVICE_BOARD));
-        mDeviceInfo.setManufacturer(getInfo(DEVICE_MANUFACTURER));
+        deviceInfo.setModel(getInfo(DEVICE_MODEL));
+        deviceInfo.setBoard(getInfo(DEVICE_BOARD));
+        deviceInfo.setManufacturer(getInfo(DEVICE_MANUFACTURER));
 
         String screenDensity = String.format(Locale.getDefault(),"%s %s", getInfo(DEVICE_SCREEN_DENSITY),getString(R.string.device_dpi));
-        mDeviceInfo.setScreenDensity(screenDensity);
+        deviceInfo.setScreenDensity(screenDensity);
 
         String screenResolution = String.format(Locale.getDefault(),"%s %s", getInfo(DEVICE_SCREEN_RESOLUTION),getString(R.string.device_pixels));
-        mDeviceInfo.setScreenResolution(screenResolution);
+        deviceInfo.setScreenResolution(screenResolution);
 
         String screenSize = String.format(Locale.getDefault(),"%s %s", getInfo(DEVICE_SCREEN_SIZE).replaceAll(",","."),getString(R.string.device_inches));
-        mDeviceInfo.setScreenSize(screenSize);
+        deviceInfo.setScreenSize(screenSize);
 
         String totalRam = getInfo(DEVICE_TOTAL_RAM).replaceAll(",",".");
-        mDeviceInfo.setTotalRam(totalRam);
+        deviceInfo.setTotalRam(totalRam);
 
         String internalStorage = getInfo(DEVICE_INTERNAL_STORAGE).replaceAll(",",".");
-        mDeviceInfo.setInternalStorage(internalStorage);
+        deviceInfo.setInternalStorage(internalStorage);
 
         String availableStorage = getInfo(DEVICE_AVAILABLE_STORAGE).replaceAll(",",".");
-        mDeviceInfo.setAvailableStorage(availableStorage);
+        deviceInfo.setAvailableStorage(availableStorage);
 
-        getRepeater().setOnRepeatListener(new Repeater.onRepeatListener() {
-            @Override
-            public void onRepeat() {
+        updateAllInformation(deviceInfo);
 
-                String availableRam = getInfo(DEVICE_AVIALABLE_RAM).replaceAll(",",".");
+        setObservableOnSubscribe( e -> {
 
+            String availableRam = getInfo(DEVICE_AVIALABLE_RAM).replaceAll(",",".");
+            deviceInfo.setAvailableRam(availableRam);
 
-                mDeviceInfo.setAvailableRam(availableRam);
-                updateInformation(mDeviceInfo);
-            }
+            e.onNext(deviceInfo);
+            e.onComplete();
         });
 
-        super.onInited();
+
+    }
+
+
+    @Override
+    void updateInformation(@NonNull rus.cpuinfo.Model.BaseInfo baseInfo) {
+        super.updateInformation(baseInfo);
+
+        HardwareInfoAdapter hardwareInfoAdapter = getAdapter();
+        hardwareInfoAdapter.notifyItemChanged(hardwareInfoAdapter.getPosition(DEVICE_AVIALABLE_RAM));
     }
 
 }

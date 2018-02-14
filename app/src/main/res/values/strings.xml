@@ -15,15 +15,6 @@
   -->
 <resources>
 
-    <!--TABS-->
-    <string-array name="Tabs">
-        <item>@string/tab_cpu</item>
-        <item>@string/tab_device</item>
-        <item>@string/tab_system</item>
-        <item>@string/tab_battery</item>
-        <item>@string/tab_sensors</item>
-        <item>@string/tab_about</item>
-    </string-array>
 
     <string name="app_name">DeviceInfo</string>
     <string name="tab_cpu">CPU</string>

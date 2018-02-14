@@ -14,38 +14,36 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/adapter_info_selector"
     android:orientation="horizontal"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground"
+    android:paddingLeft="@dimen/horizontal_margin"
+    android:paddingRight="@dimen/horizontal_margin"
+    android:paddingTop="@dimen/vertical_margin"
+    android:paddingBottom="@dimen/vertical_margin">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Here is aырпп textавав"
-        android:textSize="@dimen/fontsize4"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_small"
-        android:textStyle="bold"
         android:id="@+id/txv1"
-        android:tag="txtv1"
-        android:layout_weight="0.35" />
+        android:layout_weight="0.55"
+        android:textStyle="bold"
+        android:gravity="start"
+        android:textColor="@color/color1"
+        style="@style/TextViewStyle"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This at egggааавваgggggggg5646eqqq"
-        android:textSize="@dimen/fontsize4"
         android:id="@+id/txv2"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_marginRight="@dimen/margin_medium"
-        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_weight="0.45"
+        android:gravity="end"
         android:textStyle="italic"
-        android:layout_weight="0.65"
-        android:tag="txtv2" />
+        android:textColor="@color/color4"
+        style="@style/TextViewStyle" />
 
 </LinearLayout>

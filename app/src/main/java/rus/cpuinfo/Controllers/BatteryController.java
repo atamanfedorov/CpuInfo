@@ -22,11 +22,10 @@ import javax.inject.Inject;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
 import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
+import rus.cpuinfo.Injections.Qualifers.ForBattery;
 import rus.cpuinfo.Model.BatteryInfo;
-import rus.cpuinfo.Qualifers.ForBattery;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.Interfaces.ILogger;
-import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 
 import static rus.cpuinfo.Model.BaseInfo.BATERY_HEALTH;
@@ -60,8 +59,7 @@ public class BatteryController extends InfoController {
     /** Power source is wireless.*/
     private static final String BATTERY_PLUGGED_WIRELESS = "4";
 
-    private BatteryInfo mBatteryInfo = new BatteryInfo();
-    private final static String mTag = CpuController.class.getSimpleName();
+    private final static String mTag = BatteryController.class.getSimpleName();
 
     @Inject
     public BatteryController(@ForBattery HardwareInfoAdapter hardwareInfoAdapter, @ForBattery BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger) {
@@ -74,21 +72,30 @@ public class BatteryController extends InfoController {
         super.onInited();
         getLogger().d(mTag,"BatteryController. OnInited");
 
-        mBatteryInfo.setTechnology(getInfo(BATTERY_TECHNOLOGY));
-        getRepeater().setOnRepeatListener(new Repeater.onRepeatListener() {
-            @Override
-            public void onRepeat() {
+        BatteryInfo batteryInfo = new BatteryInfo();
+        batteryInfo.setTechnology(getInfo(BATTERY_TECHNOLOGY));
+        updateAllInformation(batteryInfo);
 
-                mBatteryInfo.setLevel(getInfo(BATERY_LEVEL));
-                mBatteryInfo.setTemperature(getInfo(BATERY_TEMPERATURE));
-                mBatteryInfo.setVoltage(getInfo(BATERY_VOLTAGE));
-                mBatteryInfo.setStatus(getBatteryStatus());
-                mBatteryInfo.setHealth(getBatteryHealth());
-                mBatteryInfo.setPowerSource(getBatteryPowerSource());
 
-                updateInformation(mBatteryInfo);
-            }
+        setObservableOnSubscribe( e -> {
+
+            batteryInfo.setLevel(getInfo(BATERY_LEVEL));
+            batteryInfo.setTemperature(getInfo(BATERY_TEMPERATURE));
+            batteryInfo.setVoltage(getInfo(BATERY_VOLTAGE));
+            batteryInfo.setStatus(getBatteryStatus());
+            batteryInfo.setHealth(getBatteryHealth());
+            batteryInfo.setPowerSource(getBatteryPowerSource());
+
+            e.onNext(batteryInfo);
+            e.onComplete();
         });
+    }
+
+    @Override
+    void updateInformation(@NonNull rus.cpuinfo.Model.BaseInfo baseInfo) {
+        super.updateInformation(baseInfo);
+        HardwareInfoAdapter hardwareInfoAdapter = getAdapter();
+        hardwareInfoAdapter.notifyDataSetChanged();
     }
 
     @NonNull
@@ -116,7 +123,6 @@ public class BatteryController extends InfoController {
 
     @NonNull
     private String getBatteryPowerSource() {
-
         String powerSource = getInfo(BATTERY_POWER_SOURCE);
 
         switch (powerSource) {
@@ -133,7 +139,6 @@ public class BatteryController extends InfoController {
 
     @NonNull
     private String getBatteryStatus() {
-
         String status = getInfo(BATERY_STATUS);
 
         switch (status) {

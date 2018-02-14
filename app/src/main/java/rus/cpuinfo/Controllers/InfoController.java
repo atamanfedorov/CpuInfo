@@ -23,10 +23,15 @@ import android.support.annotation.StringRes;
 
 import com.google.common.base.Preconditions;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
 import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
 import rus.cpuinfo.Util.Interfaces.ILogger;
-import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 
 public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
@@ -41,8 +46,6 @@ public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
     private BaseInfo mBaseInfo;
     private ILogger mLogger;
 
-    private Repeater mRepeater = new Repeater();
-
     private final static String mTag = InfoController.class.getSimpleName();
 
     public InfoController(@NonNull HardwareInfoAdapter hardwareInfoAdapter, @NonNull BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger)
@@ -54,7 +57,7 @@ public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
     }
 
     @NonNull
-    private HardwareInfoAdapter getAdapter()
+    protected HardwareInfoAdapter getAdapter()
     {
         return mHardwareInfoAdapter;
     }
@@ -68,23 +71,16 @@ public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
     protected void onUiAttached(InfoUi ui) {
         ui.setAdapter(mHardwareInfoAdapter);
         mLogger.d(mTag,"InfoController. onUiAttached");
-        mRepeater.startRepeating();
     }
 
     @Override
     protected void onUiDetached(InfoUi ui) {
         mLogger.d(mTag,"InfoController. onUiDetached");
-        mRepeater.stopRepeating();
     }
 
     String getInfo(int q)
     {
         return mBaseInfo.getInfo(q);
-    }
-
-    Repeater getRepeater()
-    {
-        return mRepeater;
     }
 
     ILogger getLogger()
@@ -95,11 +91,33 @@ public abstract class InfoController extends BaseUi<InfoController.InfoUi> {
     void updateInformation(@NonNull rus.cpuinfo.Model.BaseInfo baseInfo)
     {
         mLogger.d(mTag,"cl-InfoController. m - updateInformation. p1 - baseInfo = " + baseInfo);
+        mHardwareInfoAdapter.setInformation(baseInfo);
+    }
 
-        HardwareInfoAdapter hardwareInfoAdapter = getAdapter();
 
-        hardwareInfoAdapter.setInformation(baseInfo);
-        hardwareInfoAdapter.notifyDataSetChanged();
+    final void updateAllInformation(@NonNull rus.cpuinfo.Model.BaseInfo baseInfo)
+    {
+        mLogger.d(mTag,"cl-InfoController. m - updateInformation. p1 - baseInfo = " + baseInfo);
+
+        updateInformation(baseInfo);
+        getAdapter().notifyDataSetChanged();
+
+    }
+
+    final void setObservableOnSubscribe(ObservableOnSubscribe<rus.cpuinfo.Model.BaseInfo> obs)
+    {
+        setObservableOnSubscribe(obs,1000);
+    }
+
+    final void setObservableOnSubscribe(ObservableOnSubscribe<rus.cpuinfo.Model.BaseInfo> obs, long delayInMilliseconds)
+    {
+
+        Observable.create(obs)
+                .subscribeOn(Schedulers.single())
+                .delay(delayInMilliseconds, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .repeatUntil(() -> !isInited())
+                .subscribe(b -> updateInformation(b));
+
     }
 
 }

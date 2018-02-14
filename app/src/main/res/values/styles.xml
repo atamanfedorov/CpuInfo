@@ -16,14 +16,23 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="actionBarSize">63dp</item>
-        <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
-        <item name="android:spinnerDropDownItemStyle">@style/spinnerDropDownItemStyle</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimaryDark">@color/color1</item>
+        <item name="actionBarStyle">@style/DevInfoActionBar</item>
     </style>
+
+    <style name="DevInfoActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="titleTextStyle">@style/DevInfoTitleTextStyle</item>
+    </style>
+
+    <style name="DevInfoTitleTextStyle" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="TextViewStyle">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
 </resources>
 

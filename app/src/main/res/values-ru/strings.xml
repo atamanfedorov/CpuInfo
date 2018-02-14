@@ -15,16 +15,6 @@
   -->
 <resources>
 
-    <!--TABS-->
-    <string-array name="Tabs">
-        <item>@string/tab_cpu</item>
-        <item>@string/tab_device</item>
-        <item>@string/tab_system</item>
-        <item>@string/tab_battery</item>
-        <item>@string/tab_sensors</item>
-        <item>@string/tab_about</item>
-    </string-array>
-
     <string name="app_name">Инф-ция об устройст.</string>
     <string name="tab_cpu">ЦПУ</string>
     <string name="tab_device">УСТРОЙСТВО</string>
@@ -133,7 +123,6 @@
 
     <!--About-->
     <string name="about_version">Версия:</string>
-
     <string name="undefined">Неопределенно</string>
 
 </resources>

@@ -5,8 +5,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 
-/** The code is taken from http://stackoverflow.com/questions/1101380/determine-if-running-on-a-rooted-device/ */
-
 public class RootUtil {
 
     public static boolean isDeviceRooted() {

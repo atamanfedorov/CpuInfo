@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
 import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
 import rus.cpuinfo.Model.SensorInfo;
-import rus.cpuinfo.Qualifers.ForSensors;
+import rus.cpuinfo.Injections.Qualifers.ForSensors;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.Interfaces.ILogger;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
@@ -53,7 +53,6 @@ import static rus.cpuinfo.Model.BaseInfo.SENSOR_TYPE_GYROSCOPE;
 
 public class SensorsController extends InfoController{
 
-    private SensorInfo mSensorsInfo = new SensorInfo();
     private final static String mTag = SensorsController.class.getSimpleName();
 
     @Inject
@@ -75,34 +74,36 @@ public class SensorsController extends InfoController{
 
         getLogger().d(mTag,"SensorsController. OnInited");
 
-        mSensorsInfo.setAccelerometr(getInfo(SENSOR_ACCELEROMETR));
-        mSensorsInfo.setMagneticField(getInfo(SENSOR_MAGNETIC_FIELD));
-        mSensorsInfo.setTemperature(getInfo(SENSOR_TEMPERATURE));
-        mSensorsInfo.setHumidity(getInfo(SENSOR_RELATIVE_HUMIDITY));
-        mSensorsInfo.setLight(getInfo(SENSOR_LIGHT));
-        mSensorsInfo.setOrientation(getInfo(SENSOR_ORIENTATION));
-        mSensorsInfo.setProximity(getInfo(SENSOR_PROXIMITY));
-        mSensorsInfo.setPressure(getInfo(SENSOR_PRESSURE));
-        mSensorsInfo.setHumidity(getInfo(SENSOR_HUMIDITY));
-        mSensorsInfo.setGravity(getInfo(SENSOR_TYPE_GRAVITY));
-        mSensorsInfo.setRotationVector(getInfo(SENSOR_ROTATION_VECTOR));
-        mSensorsInfo.setLinearAccelation(getInfo(SENSOR_LINEAR_ACCELERATION));
+        SensorInfo sensorInfo = new SensorInfo();
+        sensorInfo.setAccelerometr(getInfo(SENSOR_ACCELEROMETR));
+        sensorInfo.setMagneticField(getInfo(SENSOR_MAGNETIC_FIELD));
+        sensorInfo.setTemperature(getInfo(SENSOR_TEMPERATURE));
+        sensorInfo.setHumidity(getInfo(SENSOR_RELATIVE_HUMIDITY));
+        sensorInfo.setLight(getInfo(SENSOR_LIGHT));
+        sensorInfo.setOrientation(getInfo(SENSOR_ORIENTATION));
+        sensorInfo.setProximity(getInfo(SENSOR_PROXIMITY));
+        sensorInfo.setPressure(getInfo(SENSOR_PRESSURE));
+        sensorInfo.setHumidity(getInfo(SENSOR_HUMIDITY));
+        sensorInfo.setGravity(getInfo(SENSOR_TYPE_GRAVITY));
+        sensorInfo.setRotationVector(getInfo(SENSOR_ROTATION_VECTOR));
+        sensorInfo.setLinearAccelation(getInfo(SENSOR_LINEAR_ACCELERATION));
 
-        mSensorsInfo.setAmbientTemperature(getInfo(SENSOR_AMBIENT_TEMPERATURE));
-        mSensorsInfo.setGameRotationVector(getInfo(SENSOR_GAME_ROTATION_VECTOR));
-        mSensorsInfo.setSignificantMotion(getInfo(SENSOR_SIGNIFICANT_MOTION));
-        mSensorsInfo.setHearRate(getInfo(SENSOR_HEART_RATE));
-        mSensorsInfo.setStepCounter(getInfo(SENSOR_STEP_COUNTER));
-        mSensorsInfo.setStepDetector(getInfo(SENSOR_STEP_DETECTOR));
+        sensorInfo.setAmbientTemperature(getInfo(SENSOR_AMBIENT_TEMPERATURE));
+        sensorInfo.setGameRotationVector(getInfo(SENSOR_GAME_ROTATION_VECTOR));
+        sensorInfo.setSignificantMotion(getInfo(SENSOR_SIGNIFICANT_MOTION));
+        sensorInfo.setHearRate(getInfo(SENSOR_HEART_RATE));
+        sensorInfo.setStepCounter(getInfo(SENSOR_STEP_COUNTER));
+        sensorInfo.setStepDetector(getInfo(SENSOR_STEP_DETECTOR));
 
-        mSensorsInfo.setGyroscope(getInfo(SENSOR_TYPE_GYROSCOPE));
-        mSensorsInfo.setGeomagneticRotationVector(getInfo(SENSOR_GEOMAGNETIC_ROTATION_VECTOR));
+        sensorInfo.setGyroscope(getInfo(SENSOR_TYPE_GYROSCOPE));
+        sensorInfo.setGeomagneticRotationVector(getInfo(SENSOR_GEOMAGNETIC_ROTATION_VECTOR));
 
-        updateInformation(mSensorsInfo);
+        updateAllInformation(sensorInfo);
     }
+
     @Override
     protected void onSuspended() {
         super.onSuspended();
     }
-    
+
 }

@@ -23,10 +23,9 @@ import javax.inject.Singleton;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
 import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
-import rus.cpuinfo.Qualifers.ForCpu;
+import rus.cpuinfo.Injections.Qualifers.ForCpu;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.Interfaces.ILogger;
-import rus.cpuinfo.Util.Repeater;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
 
 import static rus.cpuinfo.Model.BaseInfo.CPU_CORES;
@@ -45,8 +44,8 @@ import static rus.cpuinfo.Model.BaseInfo.SERIAL;
 @Singleton
 public class CpuController extends InfoController {
 
-    private rus.cpuinfo.Model.CpuInfo mCpuInfo = new rus.cpuinfo.Model.CpuInfo();
     private final static String mTag = CpuController.class.getSimpleName();
+
     @Inject
     public CpuController(@ForCpu HardwareInfoAdapter hardwareInfoAdapter, @ForCpu BaseInfo baseInfo, @NonNull IStringFetcher stringFetcher, @NonNull ILogger logger) {
         super(hardwareInfoAdapter, baseInfo, stringFetcher,logger);
@@ -57,30 +56,40 @@ public class CpuController extends InfoController {
         super.onInited();
         getLogger().d(mTag,"CpuContoller. OnInited");
 
-        mCpuInfo.setCores(getInfo(CPU_CORES));
-        mCpuInfo.setCpuImplementer(getInfo(CPU_IMPLEM));
-        mCpuInfo.setMinFreq(getInfo(CPU_MIN_FREQ));
-        mCpuInfo.setMaxFreq(getInfo(CPU_MAX_FREQ));
-        mCpuInfo.setCpuRevision(getInfo(CPU_REVISION));
-        mCpuInfo.setCpuPart(getInfo(CPU_PART));
-        mCpuInfo.setRevision(getInfo(REVISION));
-        mCpuInfo.setCpuVariant(getInfo(CPU_VARIANT));
-        mCpuInfo.setHardware(getInfo(HARDWARE));
-        mCpuInfo.setSerial(getInfo(SERIAL));
+        rus.cpuinfo.Model.CpuInfo cpuInfo = new rus.cpuinfo.Model.CpuInfo();
+        cpuInfo.setCores(getInfo(CPU_CORES));
+        cpuInfo.setCpuImplementer(getInfo(CPU_IMPLEM));
+        cpuInfo.setMinFreq(getInfo(CPU_MIN_FREQ));
+        cpuInfo.setMaxFreq(getInfo(CPU_MAX_FREQ));
+        cpuInfo.setCpuRevision(getInfo(CPU_REVISION));
+        cpuInfo.setCpuPart(getInfo(CPU_PART));
+        cpuInfo.setRevision(getInfo(REVISION));
+        cpuInfo.setCpuVariant(getInfo(CPU_VARIANT));
+        cpuInfo.setHardware(getInfo(HARDWARE));
+        cpuInfo.setSerial(getInfo(SERIAL));
+        cpuInfo.setProcessor(getInfo(CPU_PROCESSOR).replaceFirst("Processor",""));
+        updateAllInformation(cpuInfo);
 
-        String processor = getInfo(CPU_PROCESSOR).replaceFirst("Processor","");
-        mCpuInfo.setProcessor(processor);
+        setObservableOnSubscribe( e -> {
 
-        getRepeater().setOnRepeatListener(new Repeater.onRepeatListener() {
-            @Override
-            public void onRepeat() {
+            String frequences = getInfo(CPU_FREQ).replaceFirst("Processor","");
+            cpuInfo.setCpuFreq(frequences.replaceAll("stopped+",getString(R.string.cpu_stopped)));
 
-                String frequences = getInfo(CPU_FREQ);
-                mCpuInfo.setCpuFreq(frequences.replaceAll("stopped+",getString(R.string.cpu_stopped)));
-
-                updateInformation(mCpuInfo);
-            }
+            e.onNext(cpuInfo);
+            e.onComplete();
         });
     }
+
+    @Override
+    void updateInformation(@NonNull rus.cpuinfo.Model.BaseInfo baseInfo) {
+        super.updateInformation(baseInfo);
+
+        HardwareInfoAdapter hardwareInfoAdapter = getAdapter();
+        hardwareInfoAdapter.notifyItemRangeChanged(hardwareInfoAdapter.getPosition(CPU_FREQ),Runtime.getRuntime().availableProcessors());
+
+    }
+
 }
+
+
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--TABS-->
+    <string-array name="Tabs">
+        <item>@string/tab_cpu</item>
+        <item>@string/tab_device</item>
+        <item>@string/tab_system</item>
+        <item>@string/tab_battery</item>
+        <item>@string/tab_sensors</item>
+        <item>@string/tab_about</item>
+    </string-array>
+
+</resources>

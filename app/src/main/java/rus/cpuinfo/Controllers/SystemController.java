@@ -23,12 +23,11 @@ import javax.inject.Inject;
 
 import rus.cpuinfo.Adapters.HardwareInfoAdapter;
 import rus.cpuinfo.AndroidDepedentModel.BaseInfo;
+import rus.cpuinfo.Injections.Qualifers.ForSystem;
 import rus.cpuinfo.Model.SystemInfo;
-import rus.cpuinfo.Qualifers.ForSystem;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.Interfaces.ILogger;
 import rus.cpuinfo.Util.Interfaces.IStringFetcher;
-import rus.cpuinfo.Util.Repeater;
 
 import static rus.cpuinfo.Model.BaseInfo.SYSTEM_ANDROID_VERSION;
 import static rus.cpuinfo.Model.BaseInfo.SYSTEM_API_LEVEL;
@@ -42,7 +41,6 @@ import static rus.cpuinfo.Model.BaseInfo.SYSTEM_UPTIME;
 
 public class SystemController extends InfoController {
 
-  private SystemInfo mSystemInfo = new SystemInfo();
   private final static String mTag = SystemController.class.getSimpleName();
 
     @Inject
@@ -56,34 +54,45 @@ public class SystemController extends InfoController {
 
         getLogger().d(mTag,"SystemController. OnInited");
 
-        mSystemInfo.setBuildId(getInfo(SYSTEM_BUILD_ID));
-        mSystemInfo.setKernelArchitecture(getInfo(SYSTEM_KERNEL_ARCHITECTURE));
-        mSystemInfo.setRootAccess(isDeviceRooted());
-        mSystemInfo.setJavaVm(getInfo(SYSTEM_JAVA_VM));
+        SystemInfo systemInfo = new SystemInfo();
+
+        systemInfo.setBuildId(getInfo(SYSTEM_BUILD_ID));
+        systemInfo.setKernelArchitecture(getInfo(SYSTEM_KERNEL_ARCHITECTURE));
+        systemInfo.setRootAccess(isDeviceRooted());
+        systemInfo.setJavaVm(getInfo(SYSTEM_JAVA_VM));
 
         String bootloader = getInfo(SYSTEM_BOOTLOADER);
-        mSystemInfo.setBootloader(bootloader.equals("unknown") ? getString(R.string.undefined) : bootloader);
-
+        systemInfo.setBootloader(bootloader.equals("unknown") ? getString(R.string.undefined) : bootloader);
         // Just in case
         String apiLevel = getInfo(SYSTEM_API_LEVEL).replaceAll("[a-zA-Z\\s]","");
-        mSystemInfo.setApiLevel(apiLevel);
+        systemInfo.setApiLevel(apiLevel);
 
         String androidVersion = getInfo(SYSTEM_ANDROID_VERSION).replaceAll("[a-zA-Z\\s\\+]","");
-        mSystemInfo.setAndroidVersion(androidVersion);
+        systemInfo.setAndroidVersion(androidVersion);
 
         String kernelVersion = getInfo(SYSTEM_KERNEL_VERSION).replaceAll("[a-zA-Z\\s\\+]","");
-        mSystemInfo.setKernelVersion(kernelVersion);
+        systemInfo.setKernelVersion(kernelVersion);
 
-        getRepeater().setOnRepeatListener(new Repeater.onRepeatListener() {
-            @Override
-            public void onRepeat() {
+        updateAllInformation(systemInfo);
 
-                String systemTime = getInfo(SYSTEM_UPTIME).replaceAll("[a-zA-Z\\s]","");
-                mSystemInfo.setUpTime(systemTime);
+        setObservableOnSubscribe( e -> {
 
-                updateInformation(mSystemInfo);
-            }
-        });
+            String systemTime = getInfo(SYSTEM_UPTIME).replaceAll("[a-zA-Z\\s]","");
+            systemInfo.setUpTime(systemTime);
+
+            e.onNext(systemInfo);
+            e.onComplete();
+        },100);
+
+
+    }
+
+
+    @Override
+    void updateInformation(@NonNull rus.cpuinfo.Model.BaseInfo baseInfo) {
+        super.updateInformation(baseInfo);
+        HardwareInfoAdapter hardwareInfoAdapter = getAdapter();
+        hardwareInfoAdapter.notifyItemChanged(hardwareInfoAdapter.getPosition(SYSTEM_UPTIME));
     }
 
     @NonNull

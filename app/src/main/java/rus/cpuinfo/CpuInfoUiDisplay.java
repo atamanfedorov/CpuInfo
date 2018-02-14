@@ -16,65 +16,32 @@
 
 package rus.cpuinfo;
 
-import android.content.res.ColorStateList;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
+import javax.inject.Singleton;
+
+@Singleton
 public class CpuInfoUiDisplay implements Display {
 
     private final AppCompatActivity mActivity;
-    private Toolbar mToolbar;
 
-    CpuInfoUiDisplay(AppCompatActivity mMainActivity)
+    public CpuInfoUiDisplay(AppCompatActivity mMainActivity)
     {
         this.mActivity = mMainActivity;
     }
 
     @Override
-    public void finishActivity() {
-        mActivity.finish();
-    }
-
-    @Override
     public void setSupportActionBar(Toolbar toolbar) {
-
 
         if (toolbar != null) {
 
-            mToolbar = toolbar;
-
             ActionBar ab = mActivity.getSupportActionBar();
             if (ab != null) {
-                ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                ab.setCustomView(getView(), (ActionBar.LayoutParams) getLayoutParams());
+                ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_TITLE );
             }
         }
-
-        }
-
-    protected View getView()
-    {
-
-        LayoutInflater inflater = LayoutInflater.from(mActivity);
-        View root  = inflater.inflate(R.layout.header, null);
-
-        ColorStateList colorStateList = mActivity.getResources().getColorStateList(R.color.default_button);
-
-        AppCompatImageButton appCompatImageButton = (AppCompatImageButton)root.findViewById(R.id.action_bar_image_button);
-        appCompatImageButton.setSupportBackgroundTintList(colorStateList);
-
-        return root;
-
-    }
-
-    private ViewGroup.LayoutParams getLayoutParams()
-    {
-        return new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
 }

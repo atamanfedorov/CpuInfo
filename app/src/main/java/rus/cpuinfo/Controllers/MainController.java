@@ -46,7 +46,6 @@ public class MainController extends BaseUi<MainController.MainControllerUi>
         mSensorsController = Preconditions.checkNotNull(sensorsController,"sensorsController must not be null");
     }
 
-
     public interface MainControllerUi{
 
         void setTabs(Tabs...tabs);
@@ -54,7 +53,6 @@ public class MainController extends BaseUi<MainController.MainControllerUi>
 
 
     private static final String mTAG = MainController.class.getSimpleName();
-
 
 
     @Override
@@ -67,32 +65,11 @@ public class MainController extends BaseUi<MainController.MainControllerUi>
     @Override
     protected void onUiDetached(MainControllerUi ui) {
         Preconditions.checkNotNull(ui, "MainControllerUi is null");
-
     }
 
     public void attachDisplay(Display display) {
         Preconditions.checkNotNull(display, "display is null");
         setDisplay(display);
-    }
-
-    @Override
-    protected void onInited() {
-        super.onInited();
-        mCpuController.init();
-        mDeviceContoller.init();
-        mSystemContoller.init();
-        mBatteryController.init();
-        mSensorsController.init();
-    }
-
-    @Override
-    protected void onSuspended() {
-        super.onSuspended();
-        mCpuController.suspend();
-        mDeviceContoller.suspend();
-        mSystemContoller.suspend();
-        mBatteryController.suspend();
-        mSensorsController.suspend();
     }
 
     public void detachDisplay()

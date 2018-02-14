@@ -22,16 +22,17 @@ import android.content.res.Resources;
 
 import javax.inject.Inject;
 
-import dagger.ObjectGraph;
 import rus.cpuinfo.Controllers.MainController;
-import rus.cpuinfo.Modules.CpuInfoAppModule;
-import rus.cpuinfo.Modules.Library.ContextProvider;
+import rus.cpuinfo.Injections.Component.CpuInfoAppComponent;
+import rus.cpuinfo.Injections.Component.DaggerCpuInfoAppComponent;
+import rus.cpuinfo.Injections.Modules.ContextProvider;
 
-public class CpuInfoApp extends Application implements Injector
+public class CpuInfoApp extends Application
 {
-
-    private ObjectGraph mObjectGraph;
     private static Resources res;
+
+    private static final String TAG = CpuInfoApp.class.getSimpleName();
+    CpuInfoAppComponent mAppComponent;
 
     @Inject
     MainController mMainController;
@@ -44,9 +45,12 @@ public class CpuInfoApp extends Application implements Injector
     public void onCreate() {
         super.onCreate();
         res = getResources();
-        mObjectGraph = ObjectGraph.create(new ContextProvider(this),new CpuInfoAppModule());
-        mObjectGraph.inject(this);
 
+        mAppComponent = DaggerCpuInfoAppComponent.builder()
+                .contextProvider(new ContextProvider(this))
+                .build();
+
+        mAppComponent.inject(this);
     }
 
     public MainController getMainController() {
@@ -57,10 +61,5 @@ public class CpuInfoApp extends Application implements Injector
         return res;
     }
 
-
-    @Override
-    public void inject(Object object) {
-        mObjectGraph.inject(object);
-    }
 }
 

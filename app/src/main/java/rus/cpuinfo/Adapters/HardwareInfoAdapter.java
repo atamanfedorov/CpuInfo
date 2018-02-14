@@ -15,10 +15,10 @@
  */
 
 package rus.cpuinfo.Adapters;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -36,6 +36,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import rus.cpuinfo.Model.IBaseInfo;
 import rus.cpuinfo.R;
 import rus.cpuinfo.Util.StringHelper;
@@ -44,13 +46,12 @@ public class HardwareInfoAdapter extends RecyclerView.Adapter<HardwareInfoAdapte
 
      class ViewHolder1 extends RecyclerView.ViewHolder {
 
-         TextView mtxv1;
-         TextView mtxv2;
+         @BindView(R.id.txv1) TextView mtxv1;
+         @BindView(R.id.txv2) TextView mtxv2;
 
          ViewHolder1(View v) {
             super(v);
-            mtxv1 = (TextView) itemView.findViewById(R.id.txv1);
-            mtxv2 = (TextView) itemView.findViewById(R.id.txv2);
+            ButterKnife.bind(this,v);
         }
 
          Context getContext()
@@ -112,16 +113,24 @@ public class HardwareInfoAdapter extends RecyclerView.Adapter<HardwareInfoAdapte
         return mHardwareInfo != null ? mHardwareInfo.getInfoByQuery(qf) : StringUtils.EMPTY;
     }
 
+    public int getPosition(Integer queryConstant)
+    {
+        return mQuery.indexOf(queryConstant);
+    }
+
+
     public static class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
         private Drawable mDivider;
 
         public DividerItemDecoration(Context context) {
 
+
             TypedArray attributes = context.obtainStyledAttributes(new int[]{android.R.attr.listDivider});
             mDivider = attributes.getDrawable(0);
 
             attributes.recycle();
+
         }
 
         public DividerItemDecoration(Context context,@DrawableRes int resId) {
@@ -130,6 +139,7 @@ public class HardwareInfoAdapter extends RecyclerView.Adapter<HardwareInfoAdapte
 
         @Override
         public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+
 
 
             for (int i = 0; i < parent.getChildCount(); i++) {
@@ -146,23 +156,8 @@ public class HardwareInfoAdapter extends RecyclerView.Adapter<HardwareInfoAdapte
                 mDivider.setBounds(left,top,right,bottom);
                 mDivider.draw(c);
             }
-        }
-    }
 
-    public static class VerticalSpaceBetweenItem extends RecyclerView.ItemDecoration {
+        }
 
-        private final int mVerticalSpaceHeight;
-
-        public VerticalSpaceBetweenItem() {
-            this(1);
-        }
-        public VerticalSpaceBetweenItem(int verticalSpaceHeight) {
-            mVerticalSpaceHeight = verticalSpaceHeight;
-        }
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-                                   RecyclerView.State state) {
-            outRect.set(0, 0, 0, mVerticalSpaceHeight);
-        }
     }
 }

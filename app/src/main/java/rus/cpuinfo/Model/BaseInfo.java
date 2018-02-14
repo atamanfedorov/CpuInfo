@@ -19,7 +19,7 @@ package rus.cpuinfo.Model;
 import android.text.TextUtils;
 import android.util.SparseArray;
 
-// FIXME: 14.03.2017
+// FIXME: 1.02.2018
 
 public class BaseInfo implements IBaseInfo<String> {
 

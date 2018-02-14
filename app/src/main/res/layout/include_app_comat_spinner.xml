@@ -20,5 +20,5 @@
     android:layout_height="wrap_content"
     android:id="@+id/action_bar_spinner"
     android:entries="@array/Tabs">
-    </android.support.v7.widget.AppCompatSpinner>
+</android.support.v7.widget.AppCompatSpinner>
 
